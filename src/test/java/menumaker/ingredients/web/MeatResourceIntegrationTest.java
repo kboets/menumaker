@@ -7,6 +7,7 @@ import menumaker.MenumakerApplication;
 import menumaker.domain.Meat;
 import menumaker.service.ingredients.MeatMapper;
 import menumaker.web.ingredients.dto.MeatDto;
+import menumaker.web.ingredients.dto.MeatOriginDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +53,12 @@ public class MeatResourceIntegrationTest {
         List<MeatDto> meats = mapper.readValue(response.getBody(), new TypeReference<List<MeatDto>>(){});
         assertThat(meats.size()).isEqualTo(5);
         MeatDto one = meats.get(0);
-        assertThat(one.getMeatId()).isEqualTo(1001L);
+        assertThat(one.getMeatId()).isEqualTo(201L);
     }
 
     @Test
     public void givenMeatWithKnownId_shouldReturnCorrectMeat()  {
-        Long id = 2001L;
+        Long id = 201L;
         MeatDto meat = restTemplate.getForObject(getRootUrl()+ "/meat/"+id, MeatDto.class);
         assertNotNull(meat);
         assertThat(meat.getMeatId()).isEqualTo(id);
@@ -81,7 +82,7 @@ public class MeatResourceIntegrationTest {
 
     @Test
     public void givenKnownId_whenDeleteMeat_shouldDelete() {
-        Long id = 2001L;
+        Long id = 203L;
         MeatDto meat = restTemplate.getForObject(getRootUrl()+ "/meat/"+id, MeatDto.class);
         assertNotNull(meat);
         restTemplate.delete(getRootUrl()+ "/meat/"+id, MeatDto.class);
@@ -90,7 +91,21 @@ public class MeatResourceIntegrationTest {
         } catch (final HttpClientErrorException e) {
             assertEquals(e.getStatusCode(), HttpStatus.NOT_FOUND);
         }
+    }
 
+    @Test
+    public void givenKnownId_whenRetrievingMeatOrigins_shouldReturnCorrectOrigin() throws Exception{
+        Long id = 201L;
+        HttpHeaders headers = new HttpHeaders();
+        HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        ResponseEntity<String> response = restTemplate.exchange(getRootUrl() + "/meat/"+id+"/meatorigins",
+                HttpMethod.GET, entity, String.class);
+        assertNotNull(response.getBody());
+        ObjectMapper mapper = new ObjectMapper();
+        List<MeatOriginDto> meatOriginDtos = mapper.readValue(response.getBody(), new TypeReference<List<MeatOriginDto>>(){});
+        assertThat(meatOriginDtos.size()).isEqualTo(2);
+        MeatOriginDto one = meatOriginDtos.get(0);
+        assertThat(one.getMeatOriginId()).isEqualTo("100");
     }
 
 }

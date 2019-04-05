@@ -3,6 +3,8 @@ package menumaker.web.ingredients.dto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Set;
 
 public class MeatDto {
 
@@ -13,6 +15,7 @@ public class MeatDto {
     @NotNull
     @Size(min = 2, message = "type should at least have a size of 2")
     private String type;
+    private List<MeatOriginDto> meatOriginDtos;
 
     public MeatDto() {
     }
@@ -21,6 +24,7 @@ public class MeatDto {
         setMeatId(builder.meatId);
         setName(builder.name);
         setType(builder.type);
+        setMeatOriginDtos(builder.meatOriginDtos);
     }
 
     public Long getMeatId() {
@@ -50,10 +54,21 @@ public class MeatDto {
         return this;
     }
 
+    public List<MeatOriginDto> getMeatOriginDtos() {
+        return meatOriginDtos;
+    }
+
+    public MeatDto setMeatOriginDtos(List<MeatOriginDto> meatOriginDtos) {
+        this.meatOriginDtos = meatOriginDtos;
+        return this;
+    }
+
+
     public static final class Builder {
         private Long meatId;
         private @NotNull @Size(min = 2, message = "Name should at least have a size of 2") String name;
         private @NotNull @Size(min = 2, message = "type should at least have a size of 2") String type;
+        private List<MeatOriginDto> meatOriginDtos;
 
         public Builder() {
         }
@@ -70,6 +85,11 @@ public class MeatDto {
 
         public Builder withType(@NotNull @Size(min = 2, message = "type should at least have a size of 2") String val) {
             type = val;
+            return this;
+        }
+
+        public Builder withMeatOriginDtos(List<MeatOriginDto> val) {
+            meatOriginDtos = val;
             return this;
         }
 

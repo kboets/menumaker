@@ -1,24 +1,26 @@
 package menumaker.service.ingredients;
 
 import menumaker.domain.Meat;
+import menumaker.domain.MeatOrigin;
 import menumaker.web.ingredients.dto.MeatDto;
-import org.junit.Before;
+import menumaker.web.ingredients.dto.MeatOriginDto;
 import org.junit.Test;
-import org.mapstruct.factory.Mappers;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class MeatMapperTest {
 
+    @Autowired
     private MeatMapper meatMapper;
-
-    @Before
-    public void setUp() {
-        meatMapper = Mappers.getMapper(MeatMapper.class);
-    }
 
     @Test
     public void givenMeatWithAllFields_shouldMapCorrectToDto() {
@@ -55,4 +57,17 @@ public class MeatMapperTest {
         MeatDto targetObject = meatMapper.meatToMeatDto(sourceObject);
         assertThat(targetObject.getName()).isEqualTo("Kippeworst");
     }
+
+    @Test
+    public void givenMeatWithMeatOrigins_shouldMapAllFields() {
+        List<MeatOrigin> meatOriginSet = new ArrayList<>();
+        meatOriginSet.add(new MeatOrigin.Builder().withAnimal("varken").build());
+        Meat sourceObject = new Meat.Builder().withId(1L).withType("ROOD").withName("spek").withMeatOrigins(meatOriginSet).build();
+        MeatDto targetObject = meatMapper.meatToMeatDto(sourceObject);
+        assertThat(targetObject.getName()).isEqualTo("spek");
+        List<MeatOriginDto> meatOriginDtos = targetObject.getMeatOriginDtos();
+        assertThat(meatOriginDtos).hasSize(1);
+    }
+
+
 }

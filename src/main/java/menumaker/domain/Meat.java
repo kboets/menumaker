@@ -2,7 +2,9 @@ package menumaker.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -11,25 +13,28 @@ public class Meat implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "MEAT_ID")
     private Long id;
     @Column
     private String name;
     @Column
     private String type;
-    @ManyToOne
-    @JoinColumn(name = "meat_meatorigin_id", referencedColumnName = "id")
-    private MeatOrigin meatOrigin;
+    @ManyToMany
+    @JoinTable(name="MEAT_MEATORIGINS",
+            joinColumns=@JoinColumn(name="MEAT_ID"),
+            inverseJoinColumns=@JoinColumn(name="MEAT_ORIGIN_ID"))
+    private List<MeatOrigin> meatOrigins;
 
 
     public Meat() {
-
     }
+
     private Meat(Builder builder) {
         setId(builder.id);
         setName(builder.name);
         setType(builder.type);
+        setMeatOrigins(builder.meatOrigins);
     }
-
 
     public Long getId() {
         return id;
@@ -58,27 +63,13 @@ public class Meat implements Serializable {
         return this;
     }
 
-    public MeatOrigin getMeatOrigin() {
-        return meatOrigin;
+    public List<MeatOrigin> getMeatOrigins() {
+        return meatOrigins;
     }
 
-    public Meat setMeatOrigin(MeatOrigin meatOrigin) {
-        this.meatOrigin = meatOrigin;
+    public Meat setMeatOrigins(List<MeatOrigin> meatOrigins) {
+        this.meatOrigins = meatOrigins;
         return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Meat meat = (Meat) o;
-        return Objects.equals(name, meat.name) &&
-                Objects.equals(type, meat.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, type);
     }
 
 
@@ -86,6 +77,7 @@ public class Meat implements Serializable {
         private Long id;
         private String name;
         private String type;
+        private List<MeatOrigin> meatOrigins;
 
         public Builder() {
         }
@@ -102,6 +94,11 @@ public class Meat implements Serializable {
 
         public Builder withType(String val) {
             type = val;
+            return this;
+        }
+
+        public Builder withMeatOrigins(List<MeatOrigin> val) {
+            meatOrigins = val;
             return this;
         }
 
