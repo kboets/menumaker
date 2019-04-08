@@ -1,4 +1,4 @@
-package menumaker.ingredients.web;
+package menumaker.web.ingredients;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;

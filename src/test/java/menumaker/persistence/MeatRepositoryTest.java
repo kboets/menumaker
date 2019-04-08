@@ -1,8 +1,7 @@
-package menumaker.ingredients.persistence;
+package menumaker.persistence;
 
 import menumaker.domain.Meat;
 import menumaker.persistence.ingredients.MeatRepository;
-import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
