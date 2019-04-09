@@ -7,3 +7,4 @@ insert into MEAT_MEATORIGINS(MEAT_ORIGIN_ID, MEAT_ID) values(100,201);
 insert into MEAT_MEATORIGINS(MEAT_ORIGIN_ID, MEAT_ID) values(102,201);
 insert into MEAT (meat_id, name, type) values (202,'Kipfilet', 'WIT');
 insert into MEAT (meat_id, name, type) values (203,'Hamburger', 'ROOD');
+
