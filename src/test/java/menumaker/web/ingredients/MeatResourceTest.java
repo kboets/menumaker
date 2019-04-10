@@ -1,10 +1,9 @@
 package menumaker.web.ingredients;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import menumaker.domain.Meat;
+import menumaker.domain.ingredients.Meat;
 import menumaker.service.ingredients.MeatMapper;
 import menumaker.service.ingredients.MeatService;
-import menumaker.web.ingredients.MeatResource;
 import menumaker.web.ingredients.dto.MeatDto;
 import org.junit.Before;
 import org.junit.Test;

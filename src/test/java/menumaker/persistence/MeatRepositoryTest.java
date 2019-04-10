@@ -1,6 +1,6 @@
 package menumaker.persistence;
 
-import menumaker.domain.Meat;
+import menumaker.domain.ingredients.Meat;
 import menumaker.persistence.ingredients.MeatRepository;
 import org.junit.Ignore;
 import org.junit.Test;

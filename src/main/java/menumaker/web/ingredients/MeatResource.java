@@ -1,7 +1,5 @@
 package menumaker.web.ingredients;
 
-import menumaker.domain.Meat;
-import menumaker.domain.MeatOrigin;
 import menumaker.exception.IngredientNotFoundException;
 import menumaker.service.ingredients.MeatService;
 import menumaker.web.ingredients.dto.MeatDto;

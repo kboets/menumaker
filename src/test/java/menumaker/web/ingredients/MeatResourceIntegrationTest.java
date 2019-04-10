@@ -4,7 +4,7 @@ package menumaker.web.ingredients;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import menumaker.MenumakerApplication;
-import menumaker.domain.Meat;
+import menumaker.domain.ingredients.Meat;
 import menumaker.service.ingredients.MeatMapper;
 import menumaker.web.ingredients.dto.MeatDto;
 import menumaker.web.ingredients.dto.MeatOriginDto;
