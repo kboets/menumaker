@@ -38,10 +38,6 @@ public class FishService implements CrudService{
     }
 
 
-    public FishDto update(FishDto dto) {
-        return null;
-    }
-
 
     public boolean delete(FishDto dto) {
         fishRepository.delete(fishMapper.dtoToFish(dto));
