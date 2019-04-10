@@ -1,7 +1,7 @@
 package menumaker.persistence;
 
-import menumaker.domain.Fish;
-import menumaker.domain.FishType;
+import menumaker.domain.ingredients.Fish;
+import menumaker.domain.ingredients.FishType;
 import menumaker.persistence.ingredients.FishRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

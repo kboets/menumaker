@@ -1,7 +1,7 @@
 package menumaker.service.ingredients;
 
-import menumaker.domain.Meat;
-import menumaker.domain.MeatOrigin;
+import menumaker.domain.ingredients.Meat;
+import menumaker.domain.ingredients.MeatOrigin;
 import menumaker.web.ingredients.dto.MeatDto;
 import menumaker.web.ingredients.dto.MeatOriginDto;
 import org.junit.Test;

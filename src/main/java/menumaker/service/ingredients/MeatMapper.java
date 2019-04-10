@@ -1,12 +1,11 @@
 package menumaker.service.ingredients;
 
-import menumaker.domain.Meat;
+import menumaker.domain.ingredients.Meat;
 import menumaker.web.ingredients.dto.MeatDto;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = MeatOriginMapper.class)

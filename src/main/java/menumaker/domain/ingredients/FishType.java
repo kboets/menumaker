@@ -1,4 +1,4 @@
-package menumaker.domain;
+package menumaker.domain.ingredients;
 
 public enum FishType {
 
