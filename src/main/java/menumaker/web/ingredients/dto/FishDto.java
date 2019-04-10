@@ -1,6 +1,6 @@
 package menumaker.web.ingredients.dto;
 
-public class FishDto {
+public class FishDto extends BaseDto{
 
     private String fishId;
     private String name;
