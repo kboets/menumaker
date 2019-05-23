@@ -11,8 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface FishMapper {
 
-
-
     @Mappings({
             @Mapping(target = "fishId", source = "id"),
             @Mapping(target = "type", source = "fishType")

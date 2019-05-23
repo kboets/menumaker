@@ -35,10 +35,8 @@ public class MeatService {
     }
 
     public boolean deleteMeat(Long id) {
-        boolean isDeleted = false;
         repository.deleteById(id);
-        isDeleted = true;
-        return isDeleted;
+        return true;
     }
 }
 

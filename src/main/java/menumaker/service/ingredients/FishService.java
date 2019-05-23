@@ -2,7 +2,6 @@ package menumaker.service.ingredients;
 
 import menumaker.domain.ingredients.Fish;
 import menumaker.persistence.ingredients.FishRepository;
-import menumaker.web.ingredients.dto.BaseDto;
 import menumaker.web.ingredients.dto.FishDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class FishService implements CrudService{
+public class FishService {
 
     @Autowired
     private FishRepository fishRepository;
@@ -19,12 +18,10 @@ public class FishService implements CrudService{
     private FishMapper fishMapper;
 
 
-    @Override
     public List<?> findAll() {
         return fishMapper.fishListToDtos(fishRepository.findAll());
     }
 
-    @Override
     public Optional<?> findById(Long id) {
         Optional<Fish> optionalFish = fishRepository.findById(id);
         if(optionalFish.isPresent()){
