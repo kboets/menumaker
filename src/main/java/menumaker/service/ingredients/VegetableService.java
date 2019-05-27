@@ -1,6 +1,7 @@
 package menumaker.service.ingredients;
 
 import menumaker.domain.ingredients.Vegetable;
+import menumaker.exception.IngredientNotFoundException;
 import menumaker.persistence.ingredients.VegetableRepository;
 import menumaker.web.ingredients.dto.VegetableDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,14 @@ public class VegetableService {
             return Optional.of(vegetableMapper.vegetableToDto(vegetableOptional.get()));
         }
         return Optional.empty();
+    }
+
+    public boolean deleteMeat(Long id) {
+        vegetableRepository.deleteById(id);
+        return true;
+    }
+
+    public VegetableDto save(VegetableDto vegetableDto) {
+        return vegetableMapper.vegetableToDto(vegetableRepository.save(vegetableMapper.dtoToVegetable(vegetableDto)));
     }
 }
