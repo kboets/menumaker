@@ -16,8 +16,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
@@ -76,6 +79,24 @@ public class VegetableResourceTest {
         verifyNoMoreInteractions(vegetableService);
     }
 
+    @Test
+    public void givenListOfTwoVegetables_whenGetAll_thenReturnTwoValues() throws Exception {
+        List<VegetableDto> vegetableDtos = new ArrayList<>();
+        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build()));
+        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(2L).withName("Wortelen").withVegetableFamilyType(VegetableFamilyType.CARROT).build()));
 
+        given(vegetableService.findAllVegetables()).willReturn(vegetableDtos);
+
+        mvc.perform(get("/vegetable")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(2)));
+    }
+
+    @Test
+    public void givenOneVegetable_whenCreateVegetable_thenReturnStatusCreated() throws Exception {
+        VegetableDto toBeCreated = vegetableMapper.vegetableToDto(new Vegetable.Builder().withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build());
+
+    }
 
 }

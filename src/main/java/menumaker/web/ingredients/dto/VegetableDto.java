@@ -1,8 +1,13 @@
 package menumaker.web.ingredients.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class VegetableDto {
 
     private String vegetableId;
+    @NotNull
+    @Size(min = 2, message = "Name should at least have a size of 2")
     private String name;
     private String type;
 

@@ -52,8 +52,9 @@ public class MeatResource {
     }
 
     @PostMapping("/meat")
-    public ResponseEntity<MeatDto> createMeat(@Valid @RequestBody MeatDto meat) {
-        MeatDto saved = meatService.saveMeat(meat);
+    public ResponseEntity<MeatDto> createMeat(@Valid @RequestBody MeatDto meatDto) {
+        MeatDto saved = meatService.saveMeat(meatDto);
+
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
@@ -65,7 +66,7 @@ public class MeatResource {
     public List<MeatOriginDto> retrieveMeatOrigin(@PathVariable("id") Long id) {
         Optional<MeatDto> optionalMeat = meatService.getMeatById(id);
         if(!optionalMeat.isPresent()) {
-            throw new IngredientNotFoundException(String.format("No meat found with id %s", id));
+            throw new IngredientNotFoundException(String.format("No meat origin found with id %s", id));
         }
         return optionalMeat.get().getMeatOriginDtos();
     }

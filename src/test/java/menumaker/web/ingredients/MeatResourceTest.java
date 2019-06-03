@@ -54,6 +54,7 @@ public class MeatResourceTest {
 
     @Test
     public void givenOneMeat_whenRequestAllMeat_thenReturnJsonArray() throws Exception {
+        //given
         List<MeatDto> meatDtos = new ArrayList<>();
         meatDtos.add(meatMapper.meatToMeatDto(new Meat.Builder().withId(1L).withType("ROOD").withName("BIEFSTUK").build()));
         given(meatService.getAll()).willReturn(meatDtos);
@@ -103,16 +104,16 @@ public class MeatResourceTest {
     @Test
     public void givenOneMeat_whenRequestCreateMeat_thenReturnStatusCreated() throws Exception {
         MeatDto meatNoId =  meatMapper.meatToMeatDto(new Meat.Builder().withType("ROOD").withName("BIEFSTUK").build());
-        MeatDto meat =  meatMapper.meatToMeatDto(new Meat.Builder().withId(1L).withType("ROOD").withName("BIEFSTUK").build());
+        MeatDto meatDto =  meatMapper.meatToMeatDto(new Meat.Builder().withId(1L).withType("ROOD").withName("BIEFSTUK").build());
 
-        given(meatService.saveMeat(meatNoId)).willReturn(meat);
+        given(meatService.saveMeat(meatNoId)).willReturn(meatDto);
 
         mvc.perform(post("/meat")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(meatNoId)))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location",  containsString("http://localhost/meat/1")));
-        verify(meatService, times(1)).saveMeat(meat);
+        verify(meatService, times(1)).saveMeat(meatNoId);
         verifyNoMoreInteractions(meatService);
     }
 

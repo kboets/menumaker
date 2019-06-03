@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = MenumakerApplication.class)
-public class VegetableIntegrationTest {
+public class VegetableResourceIntegrationTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
