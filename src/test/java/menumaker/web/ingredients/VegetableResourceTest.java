@@ -1,5 +1,6 @@
 package menumaker.web.ingredients;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import menumaker.domain.ingredients.Vegetable;
 import menumaker.domain.ingredients.VegetableFamilyType;
 import menumaker.service.ingredients.VegetableMapper;
@@ -15,18 +16,22 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(VegetableResource.class)
@@ -96,7 +101,28 @@ public class VegetableResourceTest {
     @Test
     public void givenOneVegetable_whenCreateVegetable_thenReturnStatusCreated() throws Exception {
         VegetableDto toBeCreated = vegetableMapper.vegetableToDto(new Vegetable.Builder().withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build());
+        VegetableDto created = vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build());
 
+        //given
+        given(vegetableService.save(any())).willReturn(created);
+
+        MvcResult mvcResult = mvc.perform(post("/vegetable")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(toBeCreated))).andReturn();
+        int status = mvcResult.getResponse().getStatus();
+        assertThat(status).isEqualTo(201);
+        String location = (String) mvcResult.getResponse().getHeaderValue("location");
+
+        assertThat(location).isEqualTo("http://localhost/vegetable/1");
+
+    }
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

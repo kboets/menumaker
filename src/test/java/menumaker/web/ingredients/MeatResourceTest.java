@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mapstruct.factory.Mappers;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -79,7 +79,7 @@ public class MeatResourceTest {
         mvc.perform(get("/meat/{id}", 1L)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.meatId", is(1)))
                 .andExpect(jsonPath("$.name", is("BIEFSTUK"))
                 );
         verify(meatService, times(1)).getMeatById(1L);
@@ -106,15 +106,14 @@ public class MeatResourceTest {
         MeatDto meatNoId =  meatMapper.meatToMeatDto(new Meat.Builder().withType("ROOD").withName("BIEFSTUK").build());
         MeatDto meatDto =  meatMapper.meatToMeatDto(new Meat.Builder().withId(1L).withType("ROOD").withName("BIEFSTUK").build());
 
-        given(meatService.saveMeat(meatNoId)).willReturn(meatDto);
+        given(meatService.saveMeat(ArgumentMatchers.any())).willReturn(meatDto);
 
         mvc.perform(post("/meat")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(asJsonString(meatNoId)))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location",  containsString("http://localhost/meat/1")));
-        verify(meatService, times(1)).saveMeat(meatNoId);
-        verifyNoMoreInteractions(meatService);
+
     }
 
     @Test
