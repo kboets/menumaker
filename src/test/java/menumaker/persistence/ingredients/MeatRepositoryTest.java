@@ -1,4 +1,4 @@
-package menumaker.persistence;
+package menumaker.persistence.ingredients;
 
 import menumaker.domain.ingredients.Meat;
 import menumaker.persistence.ingredients.MeatRepository;
