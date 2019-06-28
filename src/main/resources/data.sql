@@ -38,3 +38,7 @@ insert into VEGETABLE (vegetable_id, name, vegetable_type) values(4016, 'Komkomm
 insert into VEGETABLE (vegetable_id, name, vegetable_type) values(4017, 'Aubergines','FRUIT');
 insert into VEGETABLE (vegetable_id, name, vegetable_type) values(4018, 'Paprika','FRUIT');
 insert into VEGETABLE (vegetable_id, name, vegetable_type) values(4019, 'Courgettes','FRUIT');
+
+insert into POTATO (potato_id, name, potato_type) values (5001, 'Gebakken patatten', 'NORMAL' );
+insert into POTATO (potato_id, name, potato_type) values (5002, 'Patatten', 'NORMAL' );
+insert into POTATO (potato_id, name, potato_type) values (5003, 'Frieten', 'FRIES' );
