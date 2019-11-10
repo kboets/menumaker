@@ -13,6 +13,10 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertNotNull;
 
@@ -47,6 +51,12 @@ public class VegetableResourceIntegrationTest {
         Long id = 1456654L;
         VegetableDto dto = restTemplate.getForObject(getRootUrl() + "/vegetable/" + id, VegetableDto.class);
         assertThat(dto).isNotNull();
+    }
+
+    @Test
+    public void whenGetVegetableByType_shouldReturnMapWithTypes() {
+        Map<String, List<VegetableDto>> result = restTemplate.getForObject(getRootUrl()+"/vegetableByType", HashMap.class);
+        assertThat(!result.entrySet().isEmpty());
     }
 
 

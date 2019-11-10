@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class VegetableService {
@@ -29,7 +31,11 @@ public class VegetableService {
         return vegetableMapper.vegetableListToDtos(vegetableRepository.findAll());
     }
 
-    public boolean deleteMeat(Long id) {
+    public Map<String, List<VegetableDto>> findAllByType() {
+        return findAllVegetables().stream().collect(Collectors.groupingBy(VegetableDto::getType));
+    }
+
+    public boolean deleteVegetable(Long id) {
         vegetableRepository.deleteById(id);
         return true;
     }

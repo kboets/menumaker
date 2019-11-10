@@ -24,7 +24,7 @@ public class FishRepositoryTest {
     public void givenCorrectName_shouldReturnFish() {
         Fish fish = fishRepository.findByName("Tonijn");
         assertThat(fish).isNotNull();
-        assertThat(fish.getFishType()).isEqualTo(FishType.HALF_FAT);
+        assertThat(fish.getFishType()).isEqualTo(FishType.HALF_VET);
     }
 
     @Test

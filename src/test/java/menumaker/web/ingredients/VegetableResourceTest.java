@@ -54,7 +54,7 @@ public class VegetableResourceTest {
     @Test
     public void givenKnownId_whenGetById_thenReturnSingleJson() throws Exception {
         //given
-        Optional<VegetableDto> optionalMeatDto = Optional.of(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build()));
+        Optional<VegetableDto> optionalMeatDto = Optional.of(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.KOOLGROENTEN).build()));
 
         given(vegetableService.findById(1L)).willReturn(optionalMeatDto);
 
@@ -87,8 +87,8 @@ public class VegetableResourceTest {
     @Test
     public void givenListOfTwoVegetables_whenGetAll_thenReturnTwoValues() throws Exception {
         List<VegetableDto> vegetableDtos = new ArrayList<>();
-        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build()));
-        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(2L).withName("Wortelen").withVegetableFamilyType(VegetableFamilyType.CARROT).build()));
+        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.KOOLGROENTEN).build()));
+        vegetableDtos.add(vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(2L).withName("Wortelen").withVegetableFamilyType(VegetableFamilyType.WORTELEN).build()));
 
         given(vegetableService.findAllVegetables()).willReturn(vegetableDtos);
 
@@ -100,8 +100,8 @@ public class VegetableResourceTest {
 
     @Test
     public void givenOneVegetable_whenCreateVegetable_thenReturnStatusCreated() throws Exception {
-        VegetableDto toBeCreated = vegetableMapper.vegetableToDto(new Vegetable.Builder().withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build());
-        VegetableDto created = vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.CABBAGE).build());
+        VegetableDto toBeCreated = vegetableMapper.vegetableToDto(new Vegetable.Builder().withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.KOOLGROENTEN).build());
+        VegetableDto created = vegetableMapper.vegetableToDto(new Vegetable.Builder().withId(1L).withName("Bloemkool").withVegetableFamilyType(VegetableFamilyType.KOOLGROENTEN).build());
 
         //given
         given(vegetableService.save(any())).willReturn(created);

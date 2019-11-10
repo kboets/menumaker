@@ -11,7 +11,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class VegetableResource {
@@ -19,7 +21,8 @@ public class VegetableResource {
     @Autowired
     private VegetableService vegetableService;
 
-    @GetMapping
+
+    @GetMapping("/vegetable")
     public List<VegetableDto> getAllVegetables() {
         return vegetableService.findAllVegetables();
     }
@@ -31,6 +34,11 @@ public class VegetableResource {
           throw new IngredientNotFoundException(String.format("No vegetable found with id %s", id));
         }
         return optionalVegetable.get();
+    }
+
+    @GetMapping("/vegetableByType")
+    public Map<String, List<VegetableDto>> getVegetableByType() {
+        return vegetableService.findAllByType();
     }
 
     @PostMapping("/vegetable")
@@ -45,7 +53,7 @@ public class VegetableResource {
 
     @DeleteMapping("/vegetable")
     public void deleteVegetable(@PathVariable("id") Long id) {
-        if(!vegetableService.deleteMeat(id)) {
+        if(!vegetableService.deleteVegetable(id)) {
             throw new IngredientNotFoundException(String.format("No vegetable found with id %s", id));
         }
     }

@@ -20,10 +20,10 @@ public class FishMapperTest {
 
     @Test
     public void givenFishWithAllFields_shouldMapCorrect() {
-        Fish sourceObject = new Fish.Builder().withName("Tonijn").withFishType(FishType.HALF_FAT).withId(1L).build();
+        Fish sourceObject = new Fish.Builder().withName("Tonijn").withFishType(FishType.HALF_VET).withId(1L).build();
         FishDto target = fishMapper.fishToDto(sourceObject);
         assertThat(target).isNotNull();
-        assertThat(target.getType()).isEqualTo("HALF_FAT");
+        assertThat(target.getType()).isEqualTo("HALF_VET");
 
     }
 

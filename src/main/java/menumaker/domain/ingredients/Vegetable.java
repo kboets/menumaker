@@ -13,20 +13,29 @@ public class Vegetable implements Serializable {
     @Column(name = "VEGETABLE_ID")
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
+
+    @Column
+    private String imageUrl;
+
+    @Column
+    private String info;
 
     @Column(name="VEGETABLE_TYPE", nullable=false)
     @Enumerated(EnumType.STRING)
     private VegetableFamilyType vegetableFamilyType;
 
     public Vegetable() {
+        setImageUrl(DomainUtil.createImageUrl(DomainUtil.vegetableUrlPrefix, this.getName()));
     }
 
     private Vegetable(Builder builder) {
         setId(builder.id);
         setName(builder.name);
         setVegetableFamilyType(builder.vegetableFamilyType);
+        setImageUrl(builder.imageUrl);
+        setInfo(builder.info);
     }
 
     public Long getId() {
@@ -56,11 +65,28 @@ public class Vegetable implements Serializable {
         return this;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     public static final class Builder {
         private Long id;
         private String name;
         private VegetableFamilyType vegetableFamilyType;
+        private String imageUrl;
+        private String info;
 
         public Builder() {
         }
@@ -77,6 +103,16 @@ public class Vegetable implements Serializable {
 
         public Builder withVegetableFamilyType(VegetableFamilyType val) {
             vegetableFamilyType = val;
+            return this;
+        }
+
+        public Builder withImageUrl(String val) {
+            imageUrl = val;
+            return this;
+        }
+
+        public Builder withInfo(String val) {
+            info = val;
             return this;
         }
 

@@ -2,5 +2,5 @@ package menumaker.domain.ingredients;
 
 public enum FishType {
 
-    FAT, HALF_FAT, WHITE, SEAFOOD
+    VET, HALF_VET, WIT, WEEKDIER
 }

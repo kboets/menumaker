@@ -10,6 +10,8 @@ public class VegetableDto {
     @Size(min = 2, message = "Name should at least have a size of 2")
     private String name;
     private String type;
+    private String info;
+    private String imageUrl;
 
     public VegetableDto() {
     }
@@ -18,6 +20,8 @@ public class VegetableDto {
         setVegetableId(builder.vegetableId);
         setName(builder.name);
         setType(builder.type);
+        setImageUrl(builder.imageUrl);
+
     }
 
     public String getVegetableId() {
@@ -47,11 +51,28 @@ public class VegetableDto {
         return this;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public static final class Builder {
         private String vegetableId;
         private String name;
         private String type;
+        private String imageUrl;
+        private String info;
 
         public Builder() {
         }
@@ -69,6 +90,48 @@ public class VegetableDto {
         public Builder withType(String val) {
             type = val;
             return this;
+        }
+
+        public Builder withImageUrl(String val) {
+            imageUrl = val;
+            return this;
+        }
+
+        public Builder withInfo(String val) {
+            info = val;
+            return this;
+        }
+
+        public String getVegetableId() {
+            return vegetableId;
+        }
+
+        public void setVegetableId(String vegetableId) {
+            this.vegetableId = vegetableId;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public String getImageUrl() {
+            return imageUrl;
+        }
+
+        public void setImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+        }
+
+        public String getInfo() {
+            return info;
+        }
+
+        public void setInfo(String info) {
+            this.info = info;
         }
 
         public VegetableDto build() {
