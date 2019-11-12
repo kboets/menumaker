@@ -1,5 +1,6 @@
 package menumaker.service.ingredients;
 
+import menumaker.domain.ingredients.DomainUtil;
 import menumaker.domain.ingredients.Vegetable;
 import menumaker.persistence.ingredients.VegetableRepository;
 import menumaker.web.ingredients.dto.VegetableDto;
@@ -28,7 +29,9 @@ public class VegetableService {
     }
 
     public List<VegetableDto> findAllVegetables() {
-        return vegetableMapper.vegetableListToDtos(vegetableRepository.findAll());
+        List<Vegetable>  allVegetables = vegetableRepository.findAll();
+        allVegetables.stream().filter(vegetable -> vegetable.getImageUrl() == null).forEach(Vegetable::initImageUrl);
+        return vegetableMapper.vegetableListToDtos(allVegetables);
     }
 
     public Map<String, List<VegetableDto>> findAllByType() {

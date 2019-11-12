@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_vegetable" author="kboets">
+        <createTable tableName="VEGETABLE">
+            <column autoIncrement="true" name="vegetable_id" type="bigint" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="vegetable_type" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="info" type="varchar(250)">
+            </column>
+            <column name="img_url" type="varchar(150)">
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

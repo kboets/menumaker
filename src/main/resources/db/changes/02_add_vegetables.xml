@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="01" author="kboets">
+        <insert tableName="VEGETABLE">
+            <column name="name" value="witloof"/>
+            <column name="vegetable_type" value="BLADGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="spinazie"/>
+            <column name="vegetable_type" value="BLADGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="bloemkool"/>
+            <column name="vegetable_type" value="KOOLGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="brocoli"/>
+            <column name="vegetable_type" value="KOOLGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="spruiten"/>
+            <column name="vegetable_type" value="KOOLGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="sperziebonen"/>
+            <column name="vegetable_type" value="PEULVRUCHT"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="erwten"/>
+            <column name="vegetable_type" value="PEULVRUCHT"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="wortelen"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="schorseneren"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="asperges"/>
+            <column name="vegetable_type" value="STENGELGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="ajuin"/>
+            <column name="vegetable_type" value="STENGELGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="prei"/>
+            <column name="vegetable_type" value="STENGELGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="tomaat"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="komkommer"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="aubergines"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="paprika"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+        <insert tableName="VEGETABLE">
+            <column name="name" value="courgette"/>
+            <column name="vegetable_type" value="VRUCHTGROENTEN"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

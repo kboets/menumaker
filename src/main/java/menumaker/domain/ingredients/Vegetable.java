@@ -16,7 +16,7 @@ public class Vegetable implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "IMG_URL")
     private String imageUrl;
 
     @Column
@@ -27,7 +27,6 @@ public class Vegetable implements Serializable {
     private VegetableFamilyType vegetableFamilyType;
 
     public Vegetable() {
-        setImageUrl(DomainUtil.createImageUrl(DomainUtil.vegetableUrlPrefix, this.getName()));
     }
 
     private Vegetable(Builder builder) {
@@ -67,6 +66,10 @@ public class Vegetable implements Serializable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void initImageUrl() {
+        this.setImageUrl(DomainUtil.createImageUrl(DomainUtil.vegetableUrlPrefix, this.getName()));
     }
 
     public void setImageUrl(String imageUrl) {
