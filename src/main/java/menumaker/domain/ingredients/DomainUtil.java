@@ -10,6 +10,7 @@ public class DomainUtil {
             case vegetableUrlPrefix :
                 builder.append(vegetableUrlPrefix);
                 builder.append(name);
+                builder.append(".png");
                 return builder.toString();
             default:
                 return null;

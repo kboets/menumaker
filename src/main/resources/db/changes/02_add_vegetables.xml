@@ -20,7 +20,7 @@
             <column name="vegetable_type" value="KOOLGROENTEN"/>
         </insert>
         <insert tableName="VEGETABLE">
-            <column name="name" value="brocoli"/>
+            <column name="name" value="broccoli"/>
             <column name="vegetable_type" value="KOOLGROENTEN"/>
         </insert>
         <insert tableName="VEGETABLE">
