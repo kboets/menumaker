@@ -9,7 +9,7 @@ import java.io.Serializable;
 public class Vegetable implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "VEGETABLE_ID")
     private Long id;
 

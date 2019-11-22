@@ -51,7 +51,19 @@ public class VegetableResource {
         return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/vegetable")
+    @PutMapping("/vegetable")
+    public ResponseEntity<VegetableDto> updateVegetable(@Valid @RequestBody VegetableDto vegetableDto) {
+        Optional<VegetableDto> foundVegetableDto = vegetableService.findById(Long.parseLong(vegetableDto.getVegetableId()));
+        if(!foundVegetableDto.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        vegetableService.save(vegetableDto);
+
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @DeleteMapping("/vegetable/{id}")
     public void deleteVegetable(@PathVariable("id") Long id) {
         if(!vegetableService.deleteVegetable(id)) {
             throw new IngredientNotFoundException(String.format("No vegetable found with id %s", id));
