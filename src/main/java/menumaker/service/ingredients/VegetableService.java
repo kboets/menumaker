@@ -1,6 +1,5 @@
 package menumaker.service.ingredients;
 
-import menumaker.domain.ingredients.DomainUtil;
 import menumaker.domain.ingredients.Vegetable;
 import menumaker.persistence.ingredients.VegetableRepository;
 import menumaker.web.ingredients.dto.VegetableDto;
