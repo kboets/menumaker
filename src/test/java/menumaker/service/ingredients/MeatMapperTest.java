@@ -27,7 +27,7 @@ public class MeatMapperTest {
         Meat sourceObject = new Meat.Builder().withId(1L).withName("Kippeworst").withType("WIT").build();
         MeatDto targetObject = meatMapper.meatToMeatDto(sourceObject);
         assertThat(targetObject.getName()).isEqualTo("Kippeworst");
-        assertThat(targetObject.getMeatId()).isEqualTo(1L);
+        assertThat(targetObject.getMeatId()).isEqualTo("1");
     }
 
     @Test
@@ -39,13 +39,13 @@ public class MeatMapperTest {
         List<MeatDto> dtos =  meatMapper.meatsToMeatDtos(meatList);
 
         assertThat(dtos.size()).isEqualTo(2);
-        assertThat(dtos.get(0).getMeatId()).isEqualTo(1L);
+        assertThat(dtos.get(0).getMeatId()).isEqualTo("1");
 
     }
 
     @Test
     public void givenMeatDtoWitAllFields_shouldMapToMeat() {
-        MeatDto sourceObject = new MeatDto.Builder().withMeatId(1L).withName("Kippeworst").withType("WIT").build();
+        MeatDto sourceObject = new MeatDto.Builder().withMeatId("1").withName("Kippeworst").withType("WIT").build();
         Meat targetObject = meatMapper.dtoToMeat(sourceObject);
         assertThat(targetObject.getName()).isEqualTo("Kippeworst");
         assertThat(targetObject.getId()).isEqualTo(1L);

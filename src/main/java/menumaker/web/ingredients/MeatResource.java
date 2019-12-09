@@ -4,6 +4,7 @@ import menumaker.exception.IngredientNotFoundException;
 import menumaker.service.ingredients.MeatService;
 import menumaker.web.ingredients.dto.MeatDto;
 import menumaker.web.ingredients.dto.MeatOriginDto;
+import menumaker.web.ingredients.dto.VegetableDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -60,6 +61,17 @@ public class MeatResource {
                 .path("/{id}")
                 .buildAndExpand(saved.getMeatId()).toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/meat")
+    public ResponseEntity<MeatDto> updateMeat(@Valid @RequestBody MeatDto meatDto) {
+        Optional<MeatDto> foundMeatDto = meatService.getMeatById(Long.parseLong(meatDto.getMeatId()));
+        if(!foundMeatDto.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        meatService.saveMeat(meatDto);
+
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/meat/{id}/meatorigins")

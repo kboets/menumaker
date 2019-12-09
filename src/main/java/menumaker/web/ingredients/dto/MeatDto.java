@@ -8,13 +8,14 @@ import java.util.Set;
 
 public class MeatDto {
 
-    private Long meatId;
+    private String meatId;
     @NotNull
     @Size(min = 2, message = "Name should at least have a size of 2")
     private String name;
     @NotNull
     @Size(min = 2, message = "type should at least have a size of 2")
     private String type;
+    private String imageUrl;
     private List<MeatOriginDto> meatOriginDtos;
 
     public MeatDto() {
@@ -25,13 +26,14 @@ public class MeatDto {
         setName(builder.name);
         setType(builder.type);
         setMeatOriginDtos(builder.meatOriginDtos);
+        setImageUrl(builder.imageUrl);
     }
 
-    public Long getMeatId() {
+    public String getMeatId() {
         return meatId;
     }
 
-    public MeatDto setMeatId(Long meatId) {
+    public MeatDto setMeatId(String meatId) {
         this.meatId = meatId;
         return this;
     }
@@ -63,17 +65,25 @@ public class MeatDto {
         return this;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public static final class Builder {
-        private Long meatId;
+        private String meatId;
         private @NotNull @Size(min = 2, message = "Name should at least have a size of 2") String name;
         private @NotNull @Size(min = 2, message = "type should at least have a size of 2") String type;
+        private String imageUrl;
         private List<MeatOriginDto> meatOriginDtos;
 
         public Builder() {
         }
 
-        public Builder withMeatId(Long val) {
+        public Builder withMeatId(String val) {
             meatId = val;
             return this;
         }
@@ -90,6 +100,11 @@ public class MeatDto {
 
         public Builder withMeatOriginDtos(List<MeatOriginDto> val) {
             meatOriginDtos = val;
+            return this;
+        }
+
+        public Builder withImageUrl(String val) {
+            imageUrl = val;
             return this;
         }
 
