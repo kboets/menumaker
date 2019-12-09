@@ -9,14 +9,19 @@ import java.util.List;
 @Table(name = "MEAT")
 public class Meat implements Serializable {
 
+    public static final String TYPE_RED = "ROOD";
+    public static final String TYPE_WHITE = "WIT";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MEAT_ID")
     private Long id;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private String type;
+    @Column(name = "IMG_URL")
+    private String imageUrl;
     @ManyToMany
     @JoinTable(name="MEAT_MEATORIGINS",
             joinColumns=@JoinColumn(name="MEAT_ID"),
@@ -31,6 +36,7 @@ public class Meat implements Serializable {
         setId(builder.id);
         setName(builder.name);
         setType(builder.type);
+        setImageUrl(builder.imageUrl);
         setMeatOrigins(builder.meatOrigins);
     }
 
@@ -65,43 +71,67 @@ public class Meat implements Serializable {
         return meatOrigins;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public Meat setMeatOrigins(List<MeatOrigin> meatOrigins) {
         this.meatOrigins = meatOrigins;
         return this;
     }
 
+    public void initImageUrl() {
+        this.setImageUrl(DomainUtil.createImageUrl(DomainUtil.meatUrlPrefix, this.getName()));
+    }
+
 
     public static final class Builder {
+        public static String TYPE_RED = "ROOD";
+        public static String TYPE_WHITE = "WIT";
         private Long id;
         private String name;
         private String type;
+        private String imageUrl;
         private List<MeatOrigin> meatOrigins;
 
         public Builder() {
         }
 
-        public Builder withId(Long val) {
-            id = val;
+        public static Builder aMeat() {
+            return new Builder();
+        }
+
+        public Builder withId(Long id) {
+            this.id = id;
             return this;
         }
 
-        public Builder withName(String val) {
-            name = val;
+        public Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public Builder withType(String val) {
-            type = val;
+        public Builder withType(String type) {
+            this.type = type;
             return this;
         }
 
-        public Builder withMeatOrigins(List<MeatOrigin> val) {
-            meatOrigins = val;
+        public Builder withImageUrl(String imageUrl) {
+            this.imageUrl = imageUrl;
+            return this;
+        }
+
+        public Builder withMeatOrigins(List<MeatOrigin> meatOrigins) {
+            this.meatOrigins = meatOrigins;
             return this;
         }
 
         public Meat build() {
-            return new Meat(this);
+           return new Meat(this);
         }
     }
 }

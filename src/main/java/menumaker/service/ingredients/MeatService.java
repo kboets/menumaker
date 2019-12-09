@@ -18,8 +18,10 @@ public class MeatService {
     @Autowired
     private MeatMapper meatMapper;
 
-    public List<MeatDto> getAll() {
-        return meatMapper.meatsToMeatDtos(repository.findAll());
+    public List<MeatDto> findAllMeat() {
+        List<Meat> meatList = repository.findAll();
+        meatList.stream().filter(meat -> meat.getImageUrl() == null).forEach(Meat::initImageUrl);
+        return meatMapper.meatsToMeatDtos(meatList);
     }
 
     public Optional<MeatDto> getMeatById(Long id) {

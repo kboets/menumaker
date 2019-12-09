@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create_vegetable" author="kboets">
+        <createTable tableName="VEGETABLE">
+            <column autoIncrement="true" name="vegetable_id" type="bigint" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="vegetable_type" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="info" type="varchar(250)">
+            </column>
+            <column name="img_url" type="varchar(150)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_meat_origins" author="kboets">
+        <createTable tableName="MEAT_ORIGIN">
+            <column autoIncrement="true" name="meat_origin_id" type="bigint" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="animal" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_meat" author="kboets">
+        <createTable tableName="MEAT">
+            <column autoIncrement="true" name="meat_id" type="bigint" incrementBy="1">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(150)">
+                <constraints nullable="false" />
+            </column>
+            <column name="type" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="img_url" type="varchar(150)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_meat_meatorigins" author="kboets">
+        <createTable tableName="MEAT_MEATORIGINS">
+            <column name="meat_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="meat_origin_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add_foreign_keys_meat" author="kboets">
+        <addForeignKeyConstraint
+                constraintName="fk_meatorigins_meat"
+                referencedTableName="MEAT_ORIGIN"
+                baseColumnNames="meat_origin_id"
+                baseTableName="MEAT_MEATORIGINS" referencedColumnNames="meat_origin_id" />
+
+        <addForeignKeyConstraint
+                constraintName="fk_meat_meatorigins"
+                referencedTableName="MEAT"
+                baseColumnNames="meat_id"
+                baseTableName="MEAT_MEATORIGINS" referencedColumnNames="meat_id" />
+
+    </changeSet>
+
+
+</databaseChangeLog>

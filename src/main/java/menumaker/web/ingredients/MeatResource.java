@@ -26,7 +26,7 @@ public class MeatResource {
 
     @GetMapping("/meat")
     public List<MeatDto> getAllMeat() {
-        return meatService.getAll();
+        return meatService.findAllMeat();
     }
 
     @GetMapping("/meat/{id}")

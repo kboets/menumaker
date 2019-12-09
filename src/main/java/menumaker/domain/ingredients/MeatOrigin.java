@@ -10,7 +10,7 @@ import java.util.Set;
 public class MeatOrigin implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MEAT_ORIGIN_ID")
     private Long id;
 

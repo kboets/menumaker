@@ -57,7 +57,7 @@ public class MeatResourceTest {
         //given
         List<MeatDto> meatDtos = new ArrayList<>();
         meatDtos.add(meatMapper.meatToMeatDto(new Meat.Builder().withId(1L).withType("ROOD").withName("BIEFSTUK").build()));
-        given(meatService.getAll()).willReturn(meatDtos);
+        given(meatService.findAllMeat()).willReturn(meatDtos);
 
         mvc.perform(get("/meat")
                 .contentType(MediaType.APPLICATION_JSON))
