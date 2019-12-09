@@ -8,30 +8,55 @@
 
     <changeSet id="add_meatOrigin" author="kboets">
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="VARKEN"/>
+            <column name="animal" value="VARKEN"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="KIP"/>
+            <column name="animal" value="KIP"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="RUND"/>
+            <column name="animal" value="RUND"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="KALF"/>
+            <column name="animal" value="KALF"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="LAM"/>
+            <column name="animal" value="LAM"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="KALKOEN"/>
+            <column name="animal" value="KALKOEN"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="SCHAAP"/>
+            <column name="animal" value="SCHAAP"/>
         </insert>
         <insert tableName="MEAT_ORIGIN">
-            <column name="name" value="PAARD"/>
+            <column name="animal" value="PAARD"/>
         </insert>
     </changeSet>
 
+    <changeSet id="add_meat" author="kboets">
+        <insert tableName="MEAT">
+            <column name="name" value="Kipfilet"/>
+            <column name="type" value="WIT"/>
+        </insert>
+        <insert tableName="MEAT">
+            <column name="name" value="Gehakt"/>
+            <column name="type" value="ROOD"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="add_meat_meatOrigin" author="kboets">
+        <insert tableName="MEAT_MEATORIGINS">
+            <column name="MEAT_ID"  valueComputed="(SELECT meat_id FROM MEAT WHERE name = 'Kipfilet')"/>
+            <column name="MEAT_ORIGIN_ID"  valueComputed="(SELECT meat_origin_id FROM MEAT_ORIGIN WHERE animal = 'KIP')"/>
+        </insert>
+        <insert tableName="MEAT_MEATORIGINS">
+            <column name="MEAT_ID"  valueComputed="(SELECT meat_id FROM MEAT WHERE name = 'Gehakt')"/>
+            <column name="MEAT_ORIGIN_ID"  valueComputed="(SELECT meat_origin_id FROM MEAT_ORIGIN WHERE animal = 'VARKEN')"/>
+        </insert>
+        <insert tableName="MEAT_MEATORIGINS">
+            <column name="MEAT_ID"  valueComputed="(SELECT meat_id FROM MEAT WHERE name = 'Gehakt')"/>
+            <column name="MEAT_ORIGIN_ID"  valueComputed="(SELECT meat_origin_id FROM MEAT_ORIGIN WHERE animal = 'RUND')"/>
+        </insert>
+    </changeSet>
 
 </databaseChangeLog>

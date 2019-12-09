@@ -7,4 +7,5 @@
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
     <include file="/db/changes/01_create_menumaker_schema.xml" />
     <include file="/db/changes/02_add_vegetables.xml" />
+    <include file="/db/changes/03_add_meat.xml" />
 </databaseChangeLog>
