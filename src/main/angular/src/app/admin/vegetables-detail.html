@@ -1,0 +1,81 @@
+<div class="space-medium">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-md-7 col-sm-12 col-xs-12">
+          <div class="contact-form form-group">
+            <h1>Get In Touch</h1>
+            <p class="mb40">Drop us a line via the contact form. We will do our best to reply as soon as possible. </p>
+            <form #vegetableForm="ngForm" (ngSubmit)="vegetableForm.valid && saveVegetable(vegetableForm)" novalidate>
+              <div class="row">
+                <div class="col col-md-3">
+                  <label class="control-label" for="name">Name : </label>
+                </div>
+                <div class="col">
+                  <input id="name" type="text" name="name" required class="form-control" #name="ngModel" [(ngModel)]="vegetable.name" [disabled]="!getIsEditMode()"
+                         [class.field-error]="vegetableForm.submitted && name.invalid" >
+                </div>
+              </div>
+              <!-- error message -->
+              <div class="row">
+                <div class="col col-md-5"></div>
+                <div class="col">
+                  <div *ngIf="name.invalid && vegetableForm.submitted">
+                    <div [class.field-error-message]="name.errors.required">
+                      De naam van de groente is een verplicht veld.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col col-md-3">
+                  <label class="control-label" for="vegetableType">Groente soort : </label>
+                </div>
+                <div class="col">
+                  <select [(ngModel)]="vegetable.type" class="form-group form-control" name="type" id="vegetableType" [disabled]="!getIsEditMode()" #vegetableType=ngModel required
+                          [class.field-error]="vegetableForm.submitted && vegetableType.invalid">
+                    <option [value]="key" *ngFor="let key of vegetablesKeys" [selected]="key === vegetable.type">
+                      {{key}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <!-- error message -->
+              <div class="row">
+                <div class="col col-md-5"></div>
+                <div class="col">
+                  <div *ngIf="vegetableType.invalid && vegetableForm.submitted">
+                    <div [class.field-error-message]="vegetableType.errors.required">
+                      Gelieve een type te selecteren.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col col-md-3">
+                  <label class="control-label" for="info">Info : </label>
+                </div>
+                <div class="col">
+                  <input id="info" type="textarea" name="info" class="form-control" [(ngModel)]="vegetable.info" [disabled]="!getIsEditMode()">
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                  <br/>
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button class="btn btn-primary" *ngIf="getIsEditMode()" type="submit">Bewaar</button>&nbsp;
+                <button class="btn btn-primary" *ngIf="!getIsEditMode()" (click)="toggleEditMode()">Wijzig</button>&nbsp;
+                <button class="btn btn-danger" *ngIf="!getIsEditMode()" (click)="deleteVegetable()">Verwijder</button>&nbsp;
+                <button class="btn btn-default" [routerLink]="['/vegetables']">Terug</button>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+

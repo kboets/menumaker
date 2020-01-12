@@ -1,0 +1,92 @@
+[
+    {
+        "vegetableId": "4002",
+        "name": "Witloof",
+        "type": "BLADGROENTEN"
+    },
+    {
+        "vegetableId": "4003",
+        "name": "Spinazie",
+        "type": "BLADGROENTEN"
+    },
+    {
+        "vegetableId": "4004",
+        "name": "Bloemkool",
+        "type": "KOOLGROENTEN"
+    },
+    {
+        "vegetableId": "4005",
+        "name": "Brocoli",
+        "type": "KOOLGROENTEN"
+    },
+    {
+        "vegetableId": "4006",
+        "name": "Spruiten",
+        "type": "KOOLGROENTEN"
+    },
+    {
+        "vegetableId": "4007",
+        "name": "Sperzie bonen",
+        "type": "PEULVRUCHT"
+    },
+    {
+        "vegetableId": "4008",
+        "name": "Snijbonen",
+        "type": "PEULVRUCHT"
+    },
+    {
+        "vegetableId": "4009",
+        "name": "Erwten",
+        "type": "PEULVRUCHT"
+    },
+    {
+        "vegetableId": "4010",
+        "name": "Wortelen",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4011",
+        "name": "Schorseneren",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4012",
+        "name": "Asperges",
+        "type": "STENGELGROENTEN"
+    },
+    {
+        "vegetableId": "4013",
+        "name": "Ajuin",
+        "type": "STENGELGROENTEN"
+    },
+    {
+        "vegetableId": "4014",
+        "name": "Prei",
+        "type": "STENGELGROENTEN"
+    },
+    {
+        "vegetableId": "4015",
+        "name": "Tomaat",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4016",
+        "name": "Komkommers",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4017",
+        "name": "Aubergines",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4018",
+        "name": "Paprika",
+        "type": "VRUCHTGROENTEN"
+    },
+    {
+        "vegetableId": "4019",
+        "name": "Courgettes",
+        "type": "VRUCHTGROENTEN"
+    }
+]

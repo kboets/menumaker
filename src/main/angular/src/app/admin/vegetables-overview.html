@@ -1,0 +1,41 @@
+<div class="space-medium" *ngIf="vegetables && vegetables.length">
+  <div class="container">
+    <div class="row form-group">
+      <div class='col-md-2 form-group'>Selecteer type:</div>
+      <div class='col-md-4'>
+        <select [(ngModel)]="selectedVegetableKey" class="form-group form-control" name="vegetableType" (ngModelChange)="changeType($event)">
+          <option [value]="key" *ngFor="let key of vegetablesKeys" [selected]="key === all">
+            {{key}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <p> </p>
+    <div class="row form-group">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"  *ngFor="let vegetable of filteredVegetables; let idx = index">
+        <div class="post-block">
+          <div class="post-img">
+            <h4 class="title form-group">{{vegetable.name}}</h4>
+            <a [routerLink]="['/vegetables', vegetable.vegetableId, 'read']" class="imghover">
+              <img [src]="vegetable.imageUrl" alt="" class="img-responsive"></a>
+          </div>
+          <!-- post block -->
+          <div class="post-content">
+            <div class="meta">
+              <span class="meta-categories"><a href="#">diet tips</a></span>
+              <span class="meta-date">30 July, 2020</span>
+            </div>
+            <p>Nam vitae aliquet metus semper vehicula juonecin dolor....</p>
+            <a href="#" class="btn-link">read more</a>
+          </div>
+          <div class="header-btn">
+            <a [routerLink]="['/vegetables', vegetable.vegetableId, 'edit']" class="btn btn-default">Wijzig</a>&nbsp;
+            <a [routerLink]="['/vegetables', 0, 'read']" class="btn btn-default">Nieuw</a>
+          </div>
+          <div class="header-btn"></div>
+        </div>
+     </div>
+    </div>
+
+  </div>
+</div>
