@@ -7,6 +7,7 @@ import {VegetablesDetailComponent} from "./components/vegetable/vegetables-detai
 import {VegetableResolverService} from "./service/vegetable/vegetable-resolver.service";
 import {VegetablesResolverService} from "./service/vegetable/vegetables-resolver.service";
 import { MeatComponent } from './components/meat/meat.component';
+import {MeatsResolverService} from "./service/meat/meats-resolver.service";
 
 
 
@@ -31,6 +32,11 @@ import { MeatComponent } from './components/meat/meat.component';
       {path: 'vegetables/:id/edit',
         component: VegetablesDetailComponent,
         resolve: {resolvedData:VegetableResolverService}
+      },
+      {
+        path: 'meats',
+        component: MeatComponent,
+        resolve: {meats: MeatsResolverService}
       }
     ]),
     ReactiveFormsModule

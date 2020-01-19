@@ -4,7 +4,6 @@ import menumaker.exception.IngredientNotFoundException;
 import menumaker.service.ingredients.MeatService;
 import menumaker.web.ingredients.dto.MeatDto;
 import menumaker.web.ingredients.dto.MeatOriginDto;
-import menumaker.web.ingredients.dto.VegetableDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Resource;
 import org.springframework.hateoas.mvc.ControllerLinkBuilder;
@@ -17,7 +16,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 @RestController
 public class MeatResource {
